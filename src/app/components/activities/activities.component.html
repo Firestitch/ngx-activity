@@ -80,7 +80,7 @@
           #dataPreview
           let-activity="activity"
           let-data="data">
-        @if (this.activityPreviews) {
+        @if (this.activityPreviews[activity.activityType.type]) {
           <ng-container
             [ngTemplateOutlet]="this.activityPreviews[activity.activityType.type].templateRef"
             [ngTemplateOutletContext]="{ activity: activity, data: data }">
