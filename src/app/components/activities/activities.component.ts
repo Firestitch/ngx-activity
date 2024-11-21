@@ -19,7 +19,8 @@ import { FilterConfig } from '@firestitch/filter';
 import { FsMenuModule } from '@firestitch/menu';
 import { FsPrompt } from '@firestitch/prompt';
 
-import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, skip, switchMap } from 'rxjs/operators';
 
 import { FsActivityPreviewDirective } from '../../directives';
 import { FsActivityObjectTypeComponent } from '../activity-object-type';
@@ -45,7 +46,7 @@ import { FsActivityObjectTypeComponent } from '../activity-object-type';
 })
 export class FsActivitiesComponent implements OnInit {
 
-  @Input() public apiPath: string = 'activities';
+  @Input() public apiPath: (string | number)[] = ['activities'];
 
   @ContentChildren(FsActivityPreviewDirective)
   public set setActivityObjects(templates: QueryList<FsActivityPreviewDirective>) {
@@ -87,9 +88,18 @@ export class FsActivitiesComponent implements OnInit {
       template: 'Are you sure that you want to delete the record?',
     })
       .pipe(
-        switchMap(() => this._api.delete(
-          `${this.apiPath}/${activity.id}`,
-        )),
+        catchError(() => 
+          of(false)
+            .pipe(skip(1)),
+        ),
+        switchMap(() => this._api
+          .delete(
+            [
+              ...this.apiPath,
+              activity.id,
+            ]
+              .join('/'),
+          )),
       )
       .subscribe(() => {
         this.activities = this.activities
@@ -101,7 +111,7 @@ export class FsActivitiesComponent implements OnInit {
 
   private _load(): void {
     this._api
-      .get(`${this.apiPath}`, {
+      .get(this.apiPath.join('/'), {
         activityTypes: true,
         creatorObjects: true,
         concreteObjects: true,
