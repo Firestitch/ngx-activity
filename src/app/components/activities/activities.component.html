@@ -86,7 +86,7 @@
             [ngTemplateOutletContext]="{ activity: activity, data: data }">
           </ng-container>
         } @else {
-          {{ data }}
+          {{ data || 'None' }}
         }
       </ng-template>
       <ng-template
@@ -99,7 +99,7 @@
             [ngTemplateOutletContext]="{ activity: activity, data: data }">
           </ng-container>
         } @else {
-          {{ data?.name }}
+          {{ data?.name || 'None' }}
         }
       </ng-template>
     </div>
