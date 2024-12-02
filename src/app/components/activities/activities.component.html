@@ -34,6 +34,13 @@
         </mat-icon>
       </a>
       <fs-menu #menu>
+        @for (action of (actions[activity.actionType.type] || []); track action) {
+          <ng-template
+              fs-menu-item
+              (click)="action.click(activity)">
+            {{ action.label }}
+          </ng-template>
+        }
         <ng-template
             fs-menu-item
             (click)="activityDelete(activity)">

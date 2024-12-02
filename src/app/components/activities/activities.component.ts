@@ -47,6 +47,12 @@ import { FsActivityObjectTypeComponent } from '../activity-object-type';
 export class FsActivitiesComponent implements OnInit {
 
   @Input() public apiPath: (string | number)[] = ['activities'];
+  @Input() public actions: { 
+      [activityType: string]: {
+        label: string;
+        click: (activity: any) => void;
+      }[]
+  } = {};
 
   @ContentChildren(FsActivityPreviewDirective)
   public set setActivityObjects(templates: QueryList<FsActivityPreviewDirective>) {
@@ -60,7 +66,6 @@ export class FsActivitiesComponent implements OnInit {
 
   public filterConfig: FilterConfig;
   public activities = [];
-  public actions;
   public maxActivityId;
   public activityPreviews: { [key: string]: FsActivityPreviewDirective } = {};
 
@@ -70,12 +75,6 @@ export class FsActivitiesComponent implements OnInit {
 
   public ngOnInit(): void {
     this._load();
-
-    this.actions = {
-      ['changeObject']: 'Changed',
-      ['changeData']: 'Changed',
-      ['addObject']: 'Added',
-    };
   }
 
   public loadNew(): void {
