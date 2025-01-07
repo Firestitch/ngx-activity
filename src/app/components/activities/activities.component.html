@@ -49,66 +49,68 @@
       </fs-menu>
     </div>
     <div class="content">
-      <ng-container *ngIf="activity.concretePreviousActivityObject">
-        <div class="previous-object">
+      @if (activity.concreteActivityObject || activity.concretePreviousActivityObject) {
+        @if (activity.concretePreviousActivityObject) {
           <ng-container
             [ngTemplateOutlet]="objectPreview"
             [ngTemplateOutletContext]="{ activity: activity, data: activity.concretePreviousActivityObject }">
           </ng-container>
-          <mat-icon>
-            east
-          </mat-icon>
-        </div>
-      </ng-container>
-      <ng-container *ngIf="activity.concreteActivityObject">
-        <ng-container
-          [ngTemplateOutlet]="objectPreview"
-          [ngTemplateOutletContext]="{ activity: activity, data: activity.concreteActivityObject }">
-        </ng-container>
-      </ng-container>
-      <ng-container *ngIf="!activity.concreteActivityObject && !activity.concretePreviousActivityObject">
-        <ng-container *ngIf="activity.previousActivityData?.value">
-          <div class="previous-object">
+        } @else {
+          None
+        }
+        <mat-icon>
+          east
+        </mat-icon>
+        @if (activity.concreteActivityObject) {
+          <ng-container
+            [ngTemplateOutlet]="objectPreview"
+            [ngTemplateOutletContext]="{ activity: activity, data: activity.concreteActivityObject }">
+          </ng-container>
+        } @else {
+          None
+        }
+        <ng-template
+            #objectPreview
+            let-activity="activity"
+            let-data="data">
+          @if (this.activityPreviews[activity.activityType.type]) {
             <ng-container
-              [ngTemplateOutlet]="dataPreview"
-              [ngTemplateOutletContext]="{ activity: activity, data: activity.previousActivityData }">
+              [ngTemplateOutlet]="this.activityPreviews[activity.activityType.type].templateRef"
+              [ngTemplateOutletContext]="{ activity: activity, data: data }">
             </ng-container>
-            <mat-icon>
-              east
-            </mat-icon>
-          </div>
+          } @else {
+            {{ data?.name || 'None' }}
+          }
+        </ng-template>
+      }
+      @if (activity.previousActivityData || activity.activityData) {
+        <ng-container *ngIf="activity.previousActivityData?.value">
+          <ng-container
+            [ngTemplateOutlet]="dataPreview"
+            [ngTemplateOutletContext]="{ activity: activity, data: activity.previousActivityData }">
+          </ng-container>
         </ng-container>
+        <mat-icon>
+          east
+        </mat-icon>
         <ng-container
           [ngTemplateOutlet]="dataPreview"
           [ngTemplateOutletContext]="{ activity: activity, data: activity.activityData }">
         </ng-container>
-      </ng-container>
-      <ng-template
-          #dataPreview
-          let-activity="activity"
-          let-data="data">
-        @if (this.activityPreviews[activity.activityType.type]) {
-          <ng-container
-            [ngTemplateOutlet]="this.activityPreviews[activity.activityType.type].templateRef"
-            [ngTemplateOutletContext]="{ activity: activity, data: data }">
-          </ng-container>
-        } @else {
-          {{ data || 'None' }}
-        }
-      </ng-template>
-      <ng-template
-          #objectPreview
-          let-activity="activity"
-          let-data="data">
-        @if (this.activityPreviews[activity.activityType.type]) {
-          <ng-container
-            [ngTemplateOutlet]="this.activityPreviews[activity.activityType.type].templateRef"
-            [ngTemplateOutletContext]="{ activity: activity, data: data }">
-          </ng-container>
-        } @else {
-          {{ data?.name || 'None' }}
-        }
-      </ng-template>
+        <ng-template
+            #dataPreview
+            let-activity="activity"
+            let-data="data">
+          @if (this.activityPreviews[activity.activityType.type]) {
+            <ng-container
+              [ngTemplateOutlet]="this.activityPreviews[activity.activityType.type].templateRef"
+              [ngTemplateOutletContext]="{ activity: activity, data: data }">
+            </ng-container>
+          } @else {
+            {{ data || 'None' }}
+          }
+        </ng-template>
+      }
     </div>
   </div>
 </ng-container>

@@ -35,14 +35,10 @@
     display: flex;
     align-items: center;
 
-    .previous-object {
-      display: flex;
-      align-items: center;
-
-      mat-icon {
-        margin: 0 8px;
-        color: #747474;
-      }
+    mat-icon {
+      margin: 0 8px;
+      color: #747474;
+      transform: scale(.8);
     }
   }
 }
