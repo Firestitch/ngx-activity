@@ -8,6 +8,7 @@ import { Directive, inject, Input, TemplateRef } from '@angular/core';
 export class FsActivityPreviewDirective {
 
   @Input() public activityType: any;
+  @Input() public showPrevious: boolean = false;
 
   public templateRef = inject(TemplateRef);
 

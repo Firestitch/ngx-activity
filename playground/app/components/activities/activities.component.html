@@ -2,15 +2,32 @@
   <ng-template
       fsActivityPreview
       [activityType]="'crmLeadStatus'"
+      [showPrevious]="true"
       let-data="data"
       let-activity="activity">
     !{{ data.name }}!
   </ng-template>
   <ng-template
       fsActivityPreview
+      [activityType]="'crmLeadAssigned'"
+      [showPrevious]="true"
+      let-data="data"
+      let-activity="activity">
+    {{ data.name }}
+  </ng-template>
+  <ng-template
+      fsActivityPreview
       [activityType]="'crmLeadDate'"
+      [showPrevious]="true"
       let-data="data"
       let-activity="activity">
     {{ data | json }}
+  </ng-template>
+  <ng-template
+      fsActivityPreview
+      [activityType]="'crmLeadLog'"
+      let-data="data"
+      let-activity="activity">
+    {{ data.notes }}
   </ng-template>
 </fs-activities>
