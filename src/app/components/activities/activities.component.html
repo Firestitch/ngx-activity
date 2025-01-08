@@ -87,12 +87,14 @@
       }
       @if (activity.previousActivityData || activity.activityData) {
         @if (this.activityPreviews[activity.activityType.type]?.showPrevious) {
-          <ng-container *ngIf="activity.previousActivityData?.value">
+          @if (activity.previousActivityData) {
             <ng-container
               [ngTemplateOutlet]="dataPreview"
               [ngTemplateOutletContext]="{ activity: activity, data: activity.previousActivityData }">
             </ng-container>
-          </ng-container>
+          } @else {
+            None
+          }
           <mat-icon>
             east
           </mat-icon>
