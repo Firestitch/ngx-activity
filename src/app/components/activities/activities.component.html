@@ -1,4 +1,4 @@
-<ng-container *ngFor="let activity of activities">
+@for (activity of activities; track activity) {
   <div class="activity">
     <div class="header">
       <fs-activity-object-type
@@ -25,28 +25,12 @@
           <fs-date-ago [date]="activity.createDate"></fs-date-ago>
         </div>
       </div>
-      <a
-          [fsMenuTriggerFor]="menu"
-          mat-icon-button
-          class="menu">
-        <mat-icon>
-          more_vert
-        </mat-icon>
-      </a>
-      <fs-menu #menu>
-        @for (action of (actions[activity.activityType.type] || []); track action) {
-          <ng-template
-              fs-menu-item
-              (click)="action.click(activity)">
-            {{ action.label }}
-          </ng-template>
-        }
-        <ng-template
-            fs-menu-item
-            (click)="activityDelete(activity)">
-          Delete
-        </ng-template>
-      </fs-menu>
+      <app-activity-menu
+        [activity]="activity"
+        [actions]="actions"
+        [showDeleteAction]="showDeleteAction"
+        (activityDelete)="activityDelete($event)">
+      </app-activity-menu>
     </div>
     <div class="content">
       @if (activity.concreteActivityObject || activity.concretePreviousActivityObject) {
@@ -119,4 +103,4 @@
       }
     </div>
   </div>
-</ng-container>
+}

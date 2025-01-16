@@ -1,5 +1,5 @@
 
-@use '@angular/material' as mat;
+
 
 
 .activity {
@@ -43,24 +43,12 @@
   }
 }
 
-.menu {
-  cursor: pointer;
-  display: flex;
-  position: absolute;
-  right: 5px;
-}
-
 @media (min-width: 800px) {
   .activity:hover {
-    .menu {
-      display: block;
+    ::ng-deep {
+      .menu {
+        display: block;
+      }
     }
-  }
-  
-  .menu {
-    @include mat.elevation(1);
-    display: none;
-    z-index: 1;
-    background-color: #fff;
   }
 }

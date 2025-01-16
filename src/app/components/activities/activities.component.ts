@@ -24,6 +24,7 @@ import { catchError, skip, switchMap } from 'rxjs/operators';
 
 import { FsActivityPreviewDirective } from '../../directives';
 import { Activity } from '../../interfaces';
+import { ActivityMenuComponent } from '../activity-menu';
 import { FsActivityObjectTypeComponent } from '../activity-object-type';
 
 
@@ -43,17 +44,19 @@ import { FsActivityObjectTypeComponent } from '../activity-object-type';
     FsDateModule,
 
     FsActivityObjectTypeComponent,
+    ActivityMenuComponent,
   ],
 })
 export class FsActivitiesComponent implements OnInit {
 
   @Input() public apiPath: (string | number)[] = ['activities'];
-  @Input() public actions: { 
-      [activityType: string]: {
+  @Input() public showDeleteAction: (activity: Activity) => boolean;
+  @Input() public actions:  
+      {
         label: string;
-        click: (activity: any) => void;
-      }[]
-  } = {};
+        click: (activity: Activity) => void;
+        show: (activity: Activity) => boolean;
+      }[] = [];
 
   @ContentChildren(FsActivityPreviewDirective)
   public set setActivityObjects(templates: QueryList<FsActivityPreviewDirective>) {
@@ -80,6 +83,14 @@ export class FsActivitiesComponent implements OnInit {
 
   public loadNew(): void {
     this._load();
+  }
+
+  public updateActivity(activity: Activity, track: (activity: Activity) => boolean): void {
+    const index = this.activities.findIndex((a) => track(a));
+    
+    if(index !== -1) {
+      this.activities[index] = activity;
+    }
   }
 
   public activityDelete(activity): void {

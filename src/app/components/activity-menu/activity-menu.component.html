@@ -1,0 +1,26 @@
+@if (showDelete || menuActions.length > 0) {
+  <a
+      [fsMenuTriggerFor]="menu"
+      mat-icon-button
+      class="menu">
+    <mat-icon>
+      more_vert
+    </mat-icon>
+  </a>
+  <fs-menu #menu>
+    @for (action of menuActions; track action) {
+      <ng-template
+          fs-menu-item
+          (click)="action.click(activity)">
+        {{ action.label }}
+      </ng-template>
+    }
+    @if (showDelete) {
+      <ng-template
+          fs-menu-item
+          (click)="activityDelete.emit(activity)">
+        Delete
+      </ng-template>
+    }
+  </fs-menu>
+}

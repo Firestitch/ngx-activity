@@ -1,0 +1,17 @@
+@use '@angular/material' as mat;
+
+.menu {
+  cursor: pointer;
+  display: flex;
+  position: absolute;
+  right: 5px;
+}
+
+@media (min-width: 800px) {
+  .menu {
+    @include mat.elevation(1);
+    display: none;
+    z-index: 1;
+    background-color: #fff;
+  }
+}
