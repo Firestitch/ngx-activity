@@ -90,6 +90,7 @@ export class FsActivitiesComponent implements OnInit {
     
     if(index !== -1) {
       this.activities[index] = activity;
+      this._cdRef.markForCheck();
     }
   }
 
