@@ -16,13 +16,14 @@
           } @else {
             added
           }
-        </div>
-        <div class="header-creator small">
-          @if (activity.creatorObject) {
-            {{ activity.creatorObject.name }}
+          <span class="header-creator small">
             &middot;
-          }
-          <fs-date-ago [date]="activity.createDate"></fs-date-ago>
+            @if (activity.creatorObject) {
+              {{ activity.creatorObject.name }}
+            &middot;
+            }
+            <fs-date-ago [date]="activity.createDate"></fs-date-ago>
+          </span>
         </div>
       </div>
       <app-activity-menu
