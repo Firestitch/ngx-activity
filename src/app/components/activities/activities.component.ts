@@ -23,6 +23,7 @@ import { of } from 'rxjs';
 import { catchError, skip, switchMap } from 'rxjs/operators';
 
 import { FsActivityPreviewDirective } from '../../directives';
+import { ActivityAction } from '../../enums';
 import { Activity } from '../../interfaces';
 import { ActivityMenuComponent } from '../activity-menu';
 import { FsActivityObjectTypeComponent } from '../activity-object-type';
@@ -71,6 +72,7 @@ export class FsActivitiesComponent implements OnInit {
   public filterConfig: FilterConfig;
   public activities: Activity[] = [];
   public maxActivityId;
+  public ActivityAction = ActivityAction;
   public activityPreviews: { [key: string]: FsActivityPreviewDirective } = {};
 
   private _api = inject(FsApi);

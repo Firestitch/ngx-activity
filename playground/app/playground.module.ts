@@ -7,7 +7,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FsActivitiesComponent, FsActivityPreviewDirective } from '@firestitch/activity';
 import { FS_API_REQUEST_INTERCEPTOR } from '@firestitch/api';
 import { FsExampleModule } from '@firestitch/example';
-import { FsHtmlEditorModule } from '@firestitch/html-editor';
+import { FsHtmlEditorModule, FsHtmlRendererModule } from '@firestitch/html-editor';
+import { FsLabelModule } from '@firestitch/label';
 import { FsMessageModule } from '@firestitch/message';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,6 +32,8 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    FsHtmlRendererModule,
+    FsLabelModule,
     FsMessageModule.forRoot(),
     FsExampleModule.forRoot(),
     RouterModule.forRoot(routes),

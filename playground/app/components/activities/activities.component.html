@@ -1,7 +1,7 @@
 <fs-activities
     [actions]="actions"
     [showDeleteAction]="showDeleteAction">
-  <ng-template
+  <!-- <ng-template
       fsActivityPreview
       [activityType]="'crmLeadStatus'"
       [showPrevious]="true"
@@ -31,5 +31,74 @@
       let-data="data"
       let-activity="activity">
     {{ data.notes }}
+  </ng-template> -->
+  <ng-template
+      fsActivityPreview
+      [activityType]="'outgoingSms'"
+      let-data="data"
+      let-activity="activity">
+    <div>
+      <div class="fs-row.gap-sm.wrap">
+        <fs-label-field>
+          <fs-label>
+            To
+          </fs-label>
+          {{ data.toNumber }}
+        </fs-label-field>
+      </div>
+      <fs-label-field>
+        <fs-label>
+          Message
+        </fs-label>
+        <fs-html-renderer [html]="data.body"></fs-html-renderer>
+      </fs-label-field>
+    </div>
+  </ng-template>
+  <ng-template
+      fsActivityPreview
+      [activityType]="'outgoingEmail'"
+      let-data="data"
+      let-activity="activity">
+    <div>
+      <div class="fs-row.gap-sm.wrap">
+        <fs-label-field>
+          <fs-label>
+            From
+          </fs-label>
+          {{ data.fromName }} ({{ data.fromEmail }})
+        </fs-label-field>
+        <fs-label-field>
+          <fs-label>
+            To
+          </fs-label>
+          {{ data.toRecipients.join(', ') }}
+        </fs-label-field>
+      </div>
+      <fs-label-field>
+        <fs-label>
+          Subject
+        </fs-label>
+        {{ data.subject }}
+      </fs-label-field>
+      <fs-html-renderer [html]="data.body"></fs-html-renderer>
+    </div>
+  </ng-template>
+  <ng-template
+      fsActivityPreview
+      [activityType]="'objectNote'"
+      let-data="data"
+      let-activity="activity">
+    <div>
+      <fs-html-renderer [html]="data.notes"></fs-html-renderer>
+    </div>
+  </ng-template>
+  <ng-template
+      fsActivityPreview
+      [activityType]="'orderStatus'"
+      let-data="data"
+      let-activity="activity">
+    <div>
+      --{{ activity | json }}--
+    </div>
   </ng-template>
 </fs-activities>
