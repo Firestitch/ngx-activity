@@ -1,5 +1,7 @@
 import { Directive, inject, Input, TemplateRef } from '@angular/core';
 
+import { Activity } from '../interfaces';
+
 
 @Directive({
   selector: '[fsActivityPreview]',
@@ -17,7 +19,7 @@ export class FsActivityPreviewDirective {
     context: any,
   ): context is {
     data: any,
-    activity: any
+    activity: Activity
   } {
     return true;
   }
