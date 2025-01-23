@@ -10,12 +10,6 @@
           <span class="object-type-name">
             {{ activity.activityObjectType.name }}
           </span>
-          @if (activity.action === ActivityAction.ChangeData || activity.action === ActivityAction.ChangeObject) {
-            {{ activity.activityType.name }}
-        changed
-          } @else {
-            added
-          }
           <span class="header-creator small">
             &middot;
             @if (activity.creatorObject) {
