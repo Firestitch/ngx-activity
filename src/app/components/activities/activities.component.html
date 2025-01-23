@@ -2,13 +2,13 @@
   <div class="activity">
     <div class="header">
       <fs-activity-object-type
-        [color]="activity.objectType.color"
-        [icon]="activity.objectType.icon">
+        [color]="activity.activityObjectType.color"
+        [icon]="activity.activityObjectType.icon">
       </fs-activity-object-type>
       <div>
         <div class="header-description">
           <span class="object-type-name">
-            {{ activity.objectType.name }}
+            {{ activity.activityObjectType.name }}
           </span>
           @if (activity.action === 'changeData' || activity.action === 'changeObject') {
             {{ activity.activityType.name }}

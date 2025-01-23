@@ -12,7 +12,13 @@ export interface Activity {
   creatorObject?: any;
   createDate?: Date;
   action?: string;
-  objectType?: {
+  subjectObjectType?: {
+    id?: number;
+    name?: string;
+    color?: string;
+    icon?: string;
+  };
+  activityObjectType?: {
     id?: number;
     name?: string;
     color?: string;
