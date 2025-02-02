@@ -52,6 +52,7 @@ export class FsActivitiesComponent implements OnInit {
 
   @Input() public apiPath: (string | number)[] = ['activities'];
   @Input() public showDeleteAction: (activity: Activity) => boolean;
+  @Input() public activityClick: (activity: Activity, event: MouseEvent) => void;
   @Input() public actions:  
       {
         label: string;

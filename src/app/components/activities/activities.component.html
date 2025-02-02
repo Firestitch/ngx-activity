@@ -1,5 +1,7 @@
 @for (activity of activities; track activity) {
-  <div class="activity">
+  <div
+      class="activity"
+      (click)="activityClick(activity, $event)">
     <div class="header">
       <fs-activity-object-type
         [color]="activity.activityObjectType.color"
