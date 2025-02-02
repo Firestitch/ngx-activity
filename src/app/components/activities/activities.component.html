@@ -28,8 +28,8 @@
       </div>
       <app-activity-menu
         [activity]="activity"
-        [actions]="actions"
-        [showDeleteAction]="showDeleteAction"
+        [actions]="config.actions"
+        [showDeleteAction]="config.showDeleteAction"
         (activityDelete)="activityDelete($event)">
       </app-activity-menu>
     </div>

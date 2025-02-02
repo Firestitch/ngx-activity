@@ -24,7 +24,7 @@ import { catchError, skip, switchMap } from 'rxjs/operators';
 
 import { FsActivityPreviewDirective } from '../../directives';
 import { ActivityAction } from '../../enums';
-import { Activity } from '../../interfaces';
+import { Activity, ActivityConfig } from '../../interfaces';
 import { ActivityMenuComponent } from '../activity-menu';
 import { FsActivityObjectTypeComponent } from '../activity-object-type';
 
@@ -50,15 +50,7 @@ import { FsActivityObjectTypeComponent } from '../activity-object-type';
 })
 export class FsActivitiesComponent implements OnInit {
 
-  @Input() public apiPath: (string | number)[] = ['activities'];
-  @Input() public showDeleteAction: (activity: Activity) => boolean;
-  @Input() public activityClick: (activity: Activity, event: MouseEvent) => void;
-  @Input() public actions:  
-      {
-        label: string;
-        click: (activity: Activity) => void;
-        show: (activity: Activity) => boolean;
-      }[] = [];
+  @Input() public config: ActivityConfig;
 
   @ContentChildren(FsActivityPreviewDirective)
   public set setActivityObjects(templates: QueryList<FsActivityPreviewDirective>) {
@@ -110,7 +102,7 @@ export class FsActivitiesComponent implements OnInit {
         switchMap(() => this._api
           .delete(
             [
-              ...this.apiPath,
+              ...this.config.apiPath,
               activity.id,
             ]
               .join('/'),
@@ -124,9 +116,15 @@ export class FsActivitiesComponent implements OnInit {
       });
   }
 
+  public activityClick(activity: Activity, event: MouseEvent): void {
+    if(this.config.activityClick) {
+      this.config.activityClick(activity, event);
+    }
+  }
+
   private _load(): void {
     this._api
-      .get(this.apiPath.join('/'), {
+      .get(this.config.apiPath.join('/'), {
         activityTypes: true,
         creatorObjects: true,
         concreteObjects: true,
