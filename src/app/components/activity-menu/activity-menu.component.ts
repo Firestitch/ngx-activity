@@ -13,7 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FsMenuModule } from '@firestitch/menu';
 
 
-import { Activity } from '../../interfaces';
+import { Activity, ActivityActionConfig } from '../../interfaces';
 
 
 @Component({
@@ -35,11 +35,7 @@ export class ActivityMenuComponent implements OnInit {
 
   @Output() public activityDelete = new EventEmitter<Activity>();
 
-  @Input() public actions: {
-    label: string;
-    click: (activity: Activity) => void;
-    show: (activity: Activity) => boolean;
-  }[] = [];
+  @Input() public actions: ActivityActionConfig[] = [];
 
   @Input() public showDeleteAction: (activity: Activity) => boolean;
 
