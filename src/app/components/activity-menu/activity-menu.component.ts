@@ -48,7 +48,7 @@ export class ActivityMenuComponent implements OnInit {
 
   public ngOnInit(): void {
     this.showDelete = (this.showDeleteAction || (() => false))(this.activity);
-    this.menuActions = this.actions
+    this.menuActions = (this.actions || [])
       .filter((action) => action.show(this.activity))
       .map((action) => ({
         ...action,
