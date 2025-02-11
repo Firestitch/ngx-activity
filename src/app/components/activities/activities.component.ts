@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 import { FsApi } from '@firestitch/api';
+import { FsBadgeModule } from '@firestitch/badge';
 import { FsDateModule } from '@firestitch/date';
 import { FilterConfig } from '@firestitch/filter';
 import { FsMenuModule } from '@firestitch/menu';
@@ -42,6 +43,7 @@ import { FsActivityObjectTypeComponent } from '../activity-object-type';
     MatIconModule,
 
     FsMenuModule,
+    FsBadgeModule,
     FsDateModule,
 
     FsActivityObjectTypeComponent,

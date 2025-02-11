@@ -19,6 +19,12 @@
           <span class="header-creator small">
             &middot;
             @if (activity.creatorObject) {
+              @if (activity.creatorObject.imageUrl) {
+                <fs-badge
+                  [size]="20"
+                  [image]="activity.creatorObject.imageUrl">
+                </fs-badge>
+              }
               {{ activity.creatorObject.name }}
             &middot;
             }
