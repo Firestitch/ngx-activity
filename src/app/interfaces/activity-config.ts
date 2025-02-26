@@ -5,6 +5,8 @@ export interface ActivityConfig {
   showDeleteAction?: (activity: Activity) => boolean;
   activityClick?: (activity: Activity, event: MouseEvent) => void;
   actions?: ActivityActionConfig[];
+  activitiesQuery?: { [key: string ]: any };
+
 }
 
 export interface ActivityActionConfig {

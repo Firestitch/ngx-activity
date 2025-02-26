@@ -66,7 +66,7 @@ export class FsActivitiesComponent implements OnInit {
 
   public filterConfig: FilterConfig;
   public activities: Activity[] = [];
-  public maxActivityId;
+  public maxActivityId = null;
   public ActivityAction = ActivityAction;
   public activityPreviews: { [key: string]: FsActivityPreviewDirective } = {};
 
@@ -75,10 +75,15 @@ export class FsActivitiesComponent implements OnInit {
   private _cdRef = inject(ChangeDetectorRef);
 
   public ngOnInit(): void {
-    this._load();
+    this.load();
   }
 
   public loadNew(): void {
+    this._load();
+  }
+
+  public load() {
+    this.maxActivityId = null;
     this._load();
   }
 
@@ -127,11 +132,12 @@ export class FsActivitiesComponent implements OnInit {
   private _load(): void {
     this._api
       .get(this.config.apiPath.join('/'), {
+        maxActivityId: this.maxActivityId || undefined,
         activityTypes: true,
         creatorObjects: true,
         concreteObjects: true,
-        maxActivityId: this.maxActivityId,
         objectTypes: true,
+        ...this.config.activitiesQuery,
       })
       .subscribe(({ activities }) => {
         this.maxActivityId = (
