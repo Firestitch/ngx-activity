@@ -53,6 +53,7 @@ import { FsActivityObjectTypeComponent } from '../activity-object-type';
 export class FsActivitiesComponent implements OnInit {
 
   @Input() public config: ActivityConfig;
+  @Input() public query: { [key: string]: any };
 
   @ContentChildren(FsActivityPreviewDirective)
   public set setActivityObjects(templates: QueryList<FsActivityPreviewDirective>) {
@@ -75,10 +76,16 @@ export class FsActivitiesComponent implements OnInit {
   private _cdRef = inject(ChangeDetectorRef);
 
   public ngOnInit(): void {
-    this.load();
+    if(this.config.autoLoad ?? true) {
+      this.load();
+    }
   }
 
-  public loadNew(): void {
+  public setQuery(query: { [key: string]: any }): void {
+    this.query = query;
+  }
+
+  public loadMore(): void {
     this._load();
   }
 
@@ -137,7 +144,7 @@ export class FsActivitiesComponent implements OnInit {
         creatorObjects: true,
         concreteObjects: true,
         objectTypes: true,
-        ...this.config.activitiesQuery,
+        ...this.query,
       })
       .subscribe(({ activities }) => {
         this.maxActivityId = (
