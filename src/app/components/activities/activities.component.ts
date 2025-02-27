@@ -91,6 +91,7 @@ export class FsActivitiesComponent implements OnInit {
 
   public load() {
     this.maxActivityId = null;
+    this.activities = [];
     this._load();
   }
 
