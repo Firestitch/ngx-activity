@@ -10,11 +10,7 @@
       <div>
         <div class="header-description">
           <span class="object-type-name">
-            @if (activity.action === ActivityAction.ChangeData || activity.action === ActivityAction.ChangeObject) {
-              {{ activity.activityType.name }}
-            } @else {
-              {{ activity.activityObjectType.name }}
-            }
+            {{ activity.activityType.name }}
           </span>
           <span class="header-creator small">
             &middot;
