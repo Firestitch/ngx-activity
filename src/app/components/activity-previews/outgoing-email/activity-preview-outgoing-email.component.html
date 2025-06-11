@@ -1,0 +1,23 @@
+<div>
+  <div class="fs-row.gap-sm.wrap">
+    <fs-label-field>
+      <fs-label>
+        From
+      </fs-label>
+      {{ data.fromName }} ({{ data.fromEmail }})
+    </fs-label-field>
+    <fs-label-field>
+      <fs-label>
+        To
+      </fs-label>
+      {{ data.toRecipients.join(', ') }}
+    </fs-label-field>
+  </div>
+  <fs-label-field>
+    <fs-label>
+      Subject
+    </fs-label>
+    {{ data.subject }}
+  </fs-label-field>
+  <fs-html-renderer [html]="data.body"></fs-html-renderer>
+</div>
