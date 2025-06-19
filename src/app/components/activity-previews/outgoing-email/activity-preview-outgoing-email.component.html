@@ -10,10 +10,10 @@
       <fs-label>
         From
       </fs-label>
-      {{ data.fromName }}
-      @if (data.fromEmail) {
+      {{ data.fromEmail }}
+      @if (data.fromName !== data.fromEmail) {
         <div class="small">
-          {{ data.fromEmail }}
+          {{ data.fromName }}
         </div>
       }
     </fs-label-field>
