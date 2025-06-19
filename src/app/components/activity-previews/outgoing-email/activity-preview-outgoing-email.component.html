@@ -2,15 +2,20 @@
   <div class="fs-row.gap-sm.wrap">
     <fs-label-field>
       <fs-label>
-        From
-      </fs-label>
-      {{ data.fromName }} ({{ data.fromEmail }})
-    </fs-label-field>
-    <fs-label-field>
-      <fs-label>
         To
       </fs-label>
       {{ data.toRecipients.join(', ') }}
+    </fs-label-field>
+    <fs-label-field>
+      <fs-label>
+        From
+      </fs-label>
+      {{ data.fromName }}
+      @if (data.fromEmail) {
+        <div class="small">
+          ({{ data.fromEmail }})
+        </div>
+      }
     </fs-label-field>
   </div>
   <fs-label-field>
