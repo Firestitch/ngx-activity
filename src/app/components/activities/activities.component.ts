@@ -1,4 +1,5 @@
-import { CommonModule } from '@angular/common';
+
+import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -37,17 +38,14 @@ import { FsActivityObjectTypeComponent } from '../activity-object-type';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    CommonModule,
-
     MatButtonModule,
     MatIconModule,
-
     FsMenuModule,
     FsBadgeModule,
     FsDateModule,
-
     FsActivityObjectTypeComponent,
     ActivityMenuComponent,
+    NgTemplateOutlet,
   ],
 })
 export class FsActivitiesComponent implements OnInit {
