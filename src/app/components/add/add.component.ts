@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
@@ -22,11 +22,9 @@ import { tap } from 'rxjs/operators';
 ],
 })
 export class AddComponent {
+  private _data = inject(MAT_DIALOG_DATA);
+  private _dialogRef = inject<MatDialogRef<AddComponent>>(MatDialogRef);
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) private _data: any,
-    private _dialogRef: MatDialogRef<AddComponent>,
-  ) {}
 
   public close(value?): void {
     this._dialogRef.close(value);
