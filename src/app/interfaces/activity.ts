@@ -4,6 +4,8 @@ export interface Activity {
     id?: number;
     name?: string;
     type?: string;
+    color?: string;
+    icon?: string;
   };
   previousActivityData?: any;
   activityData?: any;

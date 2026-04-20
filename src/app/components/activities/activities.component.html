@@ -4,8 +4,8 @@
       (click)="activityClick(activity, $event)">
     <div class="header">
       <fs-activity-object-type
-        [color]="activity.activityObjectType.color"
-        [icon]="activity.activityObjectType.icon">
+        [color]="activity.activityType.color || activity.activityObjectType.color"
+        [icon]="activity.activityType.icon || activity.activityObjectType.icon">
       </fs-activity-object-type>
       <div>
         <div class="header-description">
